@@ -132,19 +132,16 @@
             border-radius: 5px;
         }
     </style>
-    <!-- Corrected Font Awesome Icons CDN -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <nav>
-        <!-- Left-aligned menu -->
         <ul>
             <li><a href="index.html">DSA Concepts</a></li>
             <li><a href="about.html">About Me</a></li>
             <li><a href="github.html">GitHub</a></li>
         </ul>
 
-        <!-- Right-aligned social media icons -->
         <div class="social-icons">
             <a href="https://www.instagram.com/sai_jawake" target="_blank"><i class="fab fa-instagram"></i></a>
             <a href="https://www.snapchat.com" target="_blank"><i class="fab fa-snapchat"></i></a>
@@ -152,13 +149,11 @@
     </nav>
 
     <section id="dsa">
-        <!-- Header with text on the left and search on the right -->
         <div class="header-section">
             <h2>DSA Concepts Index</h2>
             <input type="text" id="searchBar" placeholder="Search DSA Concepts..." onkeyup="filterConcepts()">
         </div>
 
-        <!-- Dynamic Table -->
         <table id="dsaTable">
             <thead>
               <tr>
@@ -170,42 +165,165 @@
               </tr>
             </thead>
             <tbody>
-              <!-- Table rows will be dynamically inserted here -->
+                <tr>
+                    <td>Array</td>
+                    <td>A linear data structure that holds elements of the same type in contiguous memory.</td>
+                    <td>O(1)</td>
+                    <td>O(n)</td>
+                    <td>O(n)</td>
+                </tr>
+                <tr>
+                    <td>Linked List</td>
+                    <td>A linear data structure where elements are stored in nodes.</td>
+                    <td>O(1)</td>
+                    <td>O(n)</td>
+                    <td>O(n)</td>
+                </tr>
+                <tr>
+                    <td>Stack</td>
+                    <td>A data structure following Last In, First Out (LIFO) principle.</td>
+                    <td>O(1)</td>
+                    <td>O(n)</td>
+                    <td>O(n)</td>
+                </tr>
+                <tr>
+                    <td>Queue</td>
+                    <td>A data structure following First In, First Out (FIFO) principle.</td>
+                    <td>O(1)</td>
+                    <td>O(n)</td>
+                    <td>O(n)</td>
+                </tr>
+                <tr>
+                    <td>Hash Table</td>
+                    <td>A structure that stores key-value pairs using a hash function.</td>
+                    <td>O(1)</td>
+                    <td>O(1)</td>
+                    <td>O(n)</td>
+                </tr>
+                <tr>
+                    <td>Binary Search Tree (BST)</td>
+                    <td>A tree where each node has at most two children, left smaller, right larger.</td>
+                    <td>O(log n)</td>
+                    <td>O(log n)</td>
+                    <td>O(n)</td>
+                </tr>
+                <tr>
+                    <td>Heap</td>
+                    <td>A special tree-based data structure that satisfies the heap property.</td>
+                    <td>O(1)</td>
+                    <td>O(log n)</td>
+                    <td>O(log n)</td>
+                </tr>
+                <tr>
+                    <td>Graph</td>
+                    <td>A structure of vertices connected by edges.</td>
+                    <td>Depends on algorithm</td>
+                    <td>Depends on algorithm</td>
+                    <td>Depends on algorithm</td>
+                </tr>
+                <tr>
+                    <td>Trie</td>
+                    <td>A tree-like data structure used for storing a dynamic set of strings, typically used for fast searching.</td>
+                    <td>O(1)</td>
+                    <td>O(n)</td>
+                    <td>O(n)</td>
+                </tr>
+                <tr>
+                    <td>Binary Heap</td>
+                    <td>A complete binary tree that satisfies the heap property.</td>
+                    <td>O(1)</td>
+                    <td>O(log n)</td>
+                    <td>O(log n)</td>
+                </tr>
+                <tr>
+                    <td>Segment Tree</td>
+                    <td>A binary tree used for storing intervals or segments. It allows querying sums or other operations.</td>
+                    <td>O(log n)</td>
+                    <td>O(log n)</td>
+                    <td>O(log n)</td>
+                </tr>
+                <tr>
+                    <td>AVL Tree</td>
+                    <td>A self-balancing binary search tree where the difference in heights of left and right subtrees is at most 1.</td>
+                    <td>O(log n)</td>
+                    <td>O(log n)</td>
+                    <td>O(log n)</td>
+                </tr>
+                <tr>
+                    <td>B-Tree</td>
+                    <td>A self-balancing tree data structure that maintains sorted data and allows search, insert, delete in logarithmic time.</td>
+                    <td>O(log n)</td>
+                    <td>O(log n)</td>
+                    <td>O(log n)</td>
+                </tr>
+                <tr>
+                    <td>Floyd-Warshall Algorithm</td>
+                    <td>An algorithm for finding the shortest paths in a weighted graph with positive or negative edge weights.</td>
+                    <td>O(n^3)</td>
+                    <td>O(n^3)</td>
+                    <td>O(n^3)</td>
+                </tr>
+                <tr>
+                    <td>Dijkstra's Algorithm</td>
+                    <td>An algorithm for finding the shortest paths between nodes in a graph.</td>
+                    <td>O(V^2)</td>
+                    <td>O(V^2)</td>
+                    <td>O(V^2)</td>
+                </tr>
+                <tr>
+                    <td>Topological Sorting</td>
+                    <td>A linear ordering of vertices in a directed graph where for every directed edge u → v, vertex u comes before v.</td>
+                    <td>O(V + E)</td>
+                    <td>O(V + E)</td>
+                    <td>O(V + E)</td>
+                </tr>
+                <tr>
+                    <td>Knapsack Problem</td>
+                    <td>A problem in combinatorial optimization where we try to pack the most valuable items into a knapsack.</td>
+                    <td>O(nW)</td>
+                    <td>O(nW)</td>
+                    <td>O(nW)</td>
+                </tr>
+                <tr>
+                    <td>Dynamic Programming</td>
+                    <td>A method for solving complex problems by breaking them down into simpler subproblems and solving each subproblem only once.</td>
+                    <td>Varies</td>
+                    <td>Varies</td>
+                    <td>Varies</td>
+                </tr>
+                <tr>
+                    <td>Quick Sort</td>
+                    <td>A divide and conquer algorithm that works by partitioning an array and sorting the parts independently.</td>
+                    <td>O(n log n)</td>
+                    <td>O(n log n)</td>
+                    <td>O(n^2)</td>
+                </tr>
+                <tr>
+                    <td>Merge Sort</td>
+                    <td>A divide and conquer algorithm that splits an array into halves and merges them in sorted order.</td>
+                    <td>O(n log n)</td>
+                    <td>O(n log n)</td>
+                    <td>O(n log n)</td>
+                </tr>
+                <tr>
+                    <td>Insertion Sort</td>
+                    <td>A simple sorting algorithm that builds the sorted array one element at a time.</td>
+                    <td>O(1)</td>
+                    <td>O(n^2)</td>
+                    <td>O(n^2)</td>
+                </tr>
+                <tr>
+                    <td>Selection Sort</td>
+                    <td>A simple sorting algorithm that repeatedly selects the smallest element from the unsorted part.</td>
+                    <td>O(1)</td>
+                    <td>O(n^2)</td>
+                    <td>O(n^2)</td>
+                </tr>
             </tbody>
-          </table>
+        </table>
     </section>
 
     <script>
-        // DSA Concepts Data
-        const dsaConcepts = [
-            { concept: 'Array', description: 'A linear data structure that holds elements of the same type in contiguous memory.', best: 'O(1)', avg: 'O(n)', worst: 'O(n)' },
-            { concept: 'Linked List', description: 'A linear data structure where elements are stored in nodes.', best: 'O(1)', avg: 'O(n)', worst: 'O(n)' },
-            { concept: 'Stack', description: 'A data structure following Last In, First Out (LIFO) principle.', best: 'O(1)', avg: 'O(n)', worst: 'O(n)' },
-            { concept: 'Queue', description: 'A data structure following First In, First Out (FIFO) principle.', best: 'O(1)', avg: 'O(n)', worst: 'O(n)' },
-            { concept: 'Hash Table', description: 'A structure that stores key-value pairs using a hash function.', best: 'O(1)', avg: 'O(1)', worst: 'O(n)' },
-            { concept: 'Binary Search Tree (BST)', description: 'A tree where each node has at most two children, left smaller, right larger.', best: 'O(log n)', avg: 'O(log n)', worst: 'O(n)' },
-            { concept: 'Heap', description: 'A special tree-based data structure that satisfies the heap property.', best: 'O(1)', avg: 'O(log n)', worst: 'O(log n)' },
-            { concept: 'Graph', description: 'A structure of vertices connected by edges.', best: 'Depends on algorithm', avg: 'Depends on algorithm', worst: 'Depends on algorithm' }
-        ];
-
-        // Function to dynamically populate the table
-        function populateTable() {
-            const tableBody = document.querySelector('#dsaTable tbody');
-            tableBody.innerHTML = ''; // Clear any existing rows
-
-            dsaConcepts.forEach(item => {
-                const row = `<tr>
-                    <td>${item.concept}</td>
-                    <td>${item.description}</td>
-                    <td>${item.best}</td>
-                    <td>${item.avg}</td>
-                    <td>${item.worst}</td>
-                </tr>`;
-                tableBody.innerHTML += row;
-            });
-        }
-
-        // Function to filter concepts
         function filterConcepts() {
             const filterValue = document.getElementById('searchBar').value.toLowerCase();
             const tableRows = document.querySelectorAll('#dsaTable tbody tr');
@@ -219,9 +337,6 @@
                 }
             });
         }
-
-        // Initial population of the table when the page loads
-        window.onload = populateTable;
     </script>
 </body>
 </html>
