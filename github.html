@@ -137,9 +137,26 @@
         }
 
         .contribution-graph {
-            background-color: rgba(255, 255, 255, 0.05);
+            background-color: rgba(255, 255, 255, 0.1);
             height: 150px;
             border-radius: 8px;
+            display: grid;
+            grid-template-columns: repeat(7, 1fr); /* Simulating a weekly graph */
+            gap: 2px;
+        }
+
+        .contribution-graph div {
+            background-color: #888; /* Placeholder color */
+            height: 100%;
+        }
+
+        a {
+            color: #A8D5BA; /* Faint Green */
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #88C7A4; /* Slightly darker green on hover */
         }
     </style>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
@@ -162,21 +179,21 @@
     <div class="dashboard">
         <!-- Profile Sidebar -->
         <div class="profile">
-            <img src="https://avatars.githubusercontent.com/u/9919?s=200&v=4" alt="Profile Avatar">
-            <h2>Sai Jawake</h2>
-            <p>Web Developer | DSA Enthusiast | Open Source Contributor</p>
+            <img id="profileImage" src="https://avatars.githubusercontent.com/u/9919?s=200&v=4" alt="Profile Avatar">
+            <h2 id="profileName">Sai Jawake</h2>
+            <p id="profileBio">Web Developer | DSA Enthusiast | Open Source Contributor</p>
 
             <div class="stats">
                 <div>
-                    <h3>56</h3>
+                    <h3 id="repoCount">0</h3>
                     <p>Repositories</p>
                 </div>
                 <div>
-                    <h3>120</h3>
+                    <h3 id="followersCount">0</h3>
                     <p>Followers</p>
                 </div>
                 <div>
-                    <h3>80</h3>
+                    <h3 id="followingCount">0</h3>
                     <p>Following</p>
                 </div>
             </div>
@@ -186,27 +203,73 @@
         <div>
             <div class="repos">
                 <h3>Repositories</h3>
-                <div class="repo-item">
-                    <h4>DSA Algorithm Collection</h4>
-                    <p>Collection of DSA problems and solutions in multiple programming languages.</p>
-                </div>
-                <div class="repo-item">
-                    <h4>Portfolio Website</h4>
-                    <p>Personal portfolio website built with HTML, CSS, and JavaScript.</p>
-                </div>
-                <div class="repo-item">
-                    <h4>Weather App</h4>
-                    <p>A simple weather application using API integration.</p>
-                </div>
+                <div id="repoList"></div>
             </div>
 
             <div class="contributions">
                 <h3>Contribution Graph</h3>
                 <div class="contribution-graph">
-                    <!-- Placeholder for contribution graph -->
+                    <!-- Simple Placeholder for contribution graph -->
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        // Fetch GitHub data using GitHub API
+        const githubUsername = 'saisj2002'; // Your GitHub username
+        const apiUrl = `https://api.github.com/users/${githubUsername}`;
+
+        async function fetchGitHubData() {
+            try {
+                // Fetch user data
+                const userResponse = await fetch(apiUrl);
+                const userData = await userResponse.json();
+
+                // Check if the API response contains valid data
+                if (userData.avatar_url) {
+                    // Populate profile data
+                    document.getElementById('profileImage').src = userData.avatar_url;
+                } else {
+                    console.error('Avatar URL not found:', userData);
+                    document.getElementById('profileImage').src = 'default-avatar.jpg'; // Default avatar in case of error
+                }
+
+                document.getElementById('profileName').innerText = userData.name || githubUsername;
+                document.getElementById('profileBio').innerText = userData.bio || 'No bio available';
+                document.getElementById('repoCount').innerText = userData.public_repos;
+                document.getElementById('followersCount').innerText = userData.followers;
+                document.getElementById('followingCount').innerText = userData.following;
+
+                // Fetch repositories
+                const reposResponse = await fetch(userData.repos_url);
+                const reposData = await reposResponse.json();
+
+                // Display repositories
+                const repoList = document.getElementById('repoList');
+                reposData.forEach(repo => {
+                    const repoItem = document.createElement('div');
+                    repoItem.classList.add('repo-item');
+                    repoItem.innerHTML = `
+                        <h4><a href="${repo.html_url}" target="_blank">${repo.name}</a></h4>
+                        <p>${repo.description || 'No description available'}</p>
+                    `;
+                    repoList.appendChild(repoItem);
+                });
+            } catch (error) {
+                console.error('Error fetching data from GitHub:', error);
+            }
+        }
+
+        // Initialize the fetch
+        fetchGitHubData();
+    </script>
 </body>
 </html>

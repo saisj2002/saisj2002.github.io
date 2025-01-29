@@ -63,7 +63,17 @@
 
         section { 
             padding: 20px; 
-            text-align: center;
+        }
+
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header-section h2 {
+            margin: 0;
         }
 
         table {
@@ -75,29 +85,31 @@
               border-radius: 12px 12px 0 0;
               overflow: hidden;
               box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            }
-            table thead {
+        }
+
+        table thead {
               background-color: #009879;
               color: #ffffff;
               text-transform: uppercase;
               font-weight: bold;
-            }
-            table th, table td {
+        }
+
+        table th, table td {
               padding: 12px 15px;
-            }
-            table tbody tr {
+        }
+
+        table tbody tr {
               border-bottom: 1px solid #dddddd;
-            }
-            /* table tbody tr:nth-of-type(even) {
-              background-color: #420808;
-            } */
-            table tbody tr:last-of-type {
+        }
+
+        table tbody tr:last-of-type {
               border-bottom: 2px solid #009879;
-            }
-            table tbody tr:hover {
+        }
+
+        table tbody tr:hover {
               background-color: #54a1d86d;
               color: #000000;
-            }
+        }
 
         button { 
             padding: 10px 20px; 
@@ -111,6 +123,13 @@
 
         button:hover { 
             background-color: #0056b3; 
+        }
+
+        #searchBar {
+            padding: 10px;
+            width: 300px;
+            border: 2px solid #009879;
+            border-radius: 5px;
         }
     </style>
     <!-- Corrected Font Awesome Icons CDN -->
@@ -133,8 +152,14 @@
     </nav>
 
     <section id="dsa">
-        <h2>DSA Concepts Index</h2>
-        <table>
+        <!-- Header with text on the left and search on the right -->
+        <div class="header-section">
+            <h2>DSA Concepts Index</h2>
+            <input type="text" id="searchBar" placeholder="Search DSA Concepts..." onkeyup="filterConcepts()">
+        </div>
+
+        <!-- Dynamic Table -->
+        <table id="dsaTable">
             <thead>
               <tr>
                 <th>Concept</th>
@@ -145,78 +170,58 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Array</td>
-                <td>A linear data structure that holds elements of the same type in contiguous memory.</td>
-                <td>O(1)</td>
-                <td>O(n)</td>
-                <td>O(n)</td>
-              </tr>
-              <tr>
-                <td>Linked List</td>
-                <td>A linear data structure where elements are stored in nodes, and each node points to the next one.</td>
-                <td>O(1)</td>
-                <td>O(n)</td>
-                <td>O(n)</td>
-              </tr>
-              <tr>
-                <td>Stack</td>
-                <td>A linear data structure that follows the Last In, First Out (LIFO) principle.</td>
-                <td>O(1)</td>
-                <td>O(n)</td>
-                <td>O(n)</td>
-              </tr>
-              <tr>
-                <td>Queue</td>
-                <td>A linear data structure that follows the First In, First Out (FIFO) principle.</td>
-                <td>O(1)</td>
-                <td>O(n)</td>
-                <td>O(n)</td>
-              </tr>
-              <tr>
-                <td>Hash Table</td>
-                <td>A data structure that stores key-value pairs using a hash function to index into an array.</td>
-                <td>O(1)</td>
-                <td>O(1)</td>
-                <td>O(n)</td>
-              </tr>
-              <tr>
-                <td>Binary Search Tree (BST)</td>
-                <td>A tree structure where each node has at most two children, and the left child is smaller than the parent while the right child is greater.</td>
-                <td>O(log n)</td>
-                <td>O(log n)</td>
-                <td>O(n)</td>
-              </tr>
-              <tr>
-                <td>Heap</td>
-                <td>A special tree-based data structure that satisfies the heap property (min-heap or max-heap).</td>
-                <td>O(1)</td>
-                <td>O(log n)</td>
-                <td>O(log n)</td>
-              </tr>
-              <tr>
-                <td>Graph</td>
-                <td>A data structure that consists of nodes (vertices) connected by edges.</td>
-                <td>Depends on the algorithm</td>
-                <td>Depends on the algorithm</td>
-                <td>Depends on the algorithm</td>
-              </tr>
-              <tr>
-                <td>Sorting Algorithms</td>
-                <td>Various algorithms to sort data (e.g., Bubble Sort, Merge Sort, Quick Sort, etc.).</td>
-                <td>O(n log n)</td>
-                <td>O(n log n)</td>
-                <td>O(n^2)</td>
-              </tr>
-              <tr>
-                <td>Dynamic Programming</td>
-                <td>A technique used to solve complex problems by breaking them into simpler overlapping subproblems.</td>
-                <td>Depends on the problem</td>
-                <td>Depends on the problem</td>
-                <td>Depends on the problem</td>
-              </tr>
+              <!-- Table rows will be dynamically inserted here -->
             </tbody>
           </table>
     </section>
+
+    <script>
+        // DSA Concepts Data
+        const dsaConcepts = [
+            { concept: 'Array', description: 'A linear data structure that holds elements of the same type in contiguous memory.', best: 'O(1)', avg: 'O(n)', worst: 'O(n)' },
+            { concept: 'Linked List', description: 'A linear data structure where elements are stored in nodes.', best: 'O(1)', avg: 'O(n)', worst: 'O(n)' },
+            { concept: 'Stack', description: 'A data structure following Last In, First Out (LIFO) principle.', best: 'O(1)', avg: 'O(n)', worst: 'O(n)' },
+            { concept: 'Queue', description: 'A data structure following First In, First Out (FIFO) principle.', best: 'O(1)', avg: 'O(n)', worst: 'O(n)' },
+            { concept: 'Hash Table', description: 'A structure that stores key-value pairs using a hash function.', best: 'O(1)', avg: 'O(1)', worst: 'O(n)' },
+            { concept: 'Binary Search Tree (BST)', description: 'A tree where each node has at most two children, left smaller, right larger.', best: 'O(log n)', avg: 'O(log n)', worst: 'O(n)' },
+            { concept: 'Heap', description: 'A special tree-based data structure that satisfies the heap property.', best: 'O(1)', avg: 'O(log n)', worst: 'O(log n)' },
+            { concept: 'Graph', description: 'A structure of vertices connected by edges.', best: 'Depends on algorithm', avg: 'Depends on algorithm', worst: 'Depends on algorithm' }
+        ];
+
+        // Function to dynamically populate the table
+        function populateTable() {
+            const tableBody = document.querySelector('#dsaTable tbody');
+            tableBody.innerHTML = ''; // Clear any existing rows
+
+            dsaConcepts.forEach(item => {
+                const row = `<tr>
+                    <td>${item.concept}</td>
+                    <td>${item.description}</td>
+                    <td>${item.best}</td>
+                    <td>${item.avg}</td>
+                    <td>${item.worst}</td>
+                </tr>`;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        // Function to filter concepts
+        function filterConcepts() {
+            const filterValue = document.getElementById('searchBar').value.toLowerCase();
+            const tableRows = document.querySelectorAll('#dsaTable tbody tr');
+
+            tableRows.forEach(row => {
+                const concept = row.querySelector('td').innerText.toLowerCase();
+                if (concept.includes(filterValue)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // Initial population of the table when the page loads
+        window.onload = populateTable;
+    </script>
 </body>
 </html>

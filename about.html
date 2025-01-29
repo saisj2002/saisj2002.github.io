@@ -19,8 +19,8 @@
             padding: 10px 20px; 
             display: flex; 
             justify-content: space-between; 
-            align-items: center; /* Align items vertically */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Materialistic shadow */
+            align-items: center; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
 
         nav ul { 
@@ -28,13 +28,13 @@
             padding: 0; 
             margin: 0; 
             display: flex; 
-            gap: 15px; /* Reduce gap between menu items */
+            gap: 15px;
         }
 
         nav ul li a { 
             color: white; 
             text-decoration: none; 
-            font-weight: 600; /* Semi-bold */
+            font-weight: 600; 
             padding: 10px 15px; 
             transition: background-color 0.3s ease, transform 0.3s ease; 
             border-radius: 5px;
@@ -52,7 +52,7 @@
 
         .social-icons a {
             color: white;
-            font-size: 1.5rem; /* Adjust size of icons */
+            font-size: 1.5rem; 
             transition: color 0.3s ease, transform 0.3s ease;
         }
 
@@ -66,40 +66,74 @@
             text-align: center;
         }
 
-        table { 
-            width: 80%; 
-            margin: auto; 
-            border-collapse: collapse; 
+        #skills {
             margin-top: 20px;
-            background-color: rgba(255, 255, 255, 0.1); /* Transparent matte background */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Materialistic shadow */
-            border-radius: 8px;
-        }
-
-        table, th, td { 
-            border: 1px solid rgba(255, 255, 255, 0.2); 
-            padding: 8px; 
             text-align: left;
-            color: white;
         }
 
-        th { 
-            background-color: rgba(255, 255, 255, 0.2); 
+        #skills ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
         }
 
-        button { 
-            padding: 10px 20px; 
-            background-color: #007bff; 
-            color: white; 
-            border: none; 
-            cursor: pointer; 
-            transition: background-color 0.3s ease;
+        #skills ul li {
+            background-color: rgba(255, 255, 255, 0.1);
+            margin: 5px 0;
+            padding: 10px;
             border-radius: 5px;
         }
 
-        button:hover { 
-            background-color: #0056b3; 
+        /* Contact section styling */
+        #contact-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
         }
+
+        #contact-button:hover {
+            background-color: #0056b3;
+        }
+
+        #contact {
+            display: none; /* Hidden initially */
+            position: fixed;
+            bottom: 70px;
+            right: 20px;
+            background-color: rgba(255, 255, 255, 0.1); /* Matte background */
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Materialistic shadow */
+            width: 300px;
+        }
+
+        #contact h3 {
+            margin: 0 0 10px 0;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .contact-item {
+            background-color: rgba(255, 255, 255, 0.2); 
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .contact-item span {
+            font-weight: 600;
+        }
+
     </style>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
@@ -122,5 +156,78 @@
         <h2>About Me</h2>
         <p>Hi, I'm Sai SJ, a software developer with a keen interest in data structures and algorithms. I enjoy solving coding problems and contributing to open-source projects. My GitHub contains many of the projects I've worked on!</p>
     </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h3>Skills</h3>
+        <ul id="skillsList">
+            <li>Flutter</li>
+            <li>HTML/CSS</li>
+            <li>C++</li>
+            <li>JAVA</li>
+            <li>SQL</li>
+            <li>Linux</li>
+            <li>Leadership</li>
+            <li>Adaptability</li>
+        </ul>
+        <h3>Tools</h3>
+        <ul id="skillsList">
+            <li>Android Studio</li>
+            <li>MS-Office</li>
+            <li>Visual Studio Code</li>
+            <li>Github/Git</li>
+        </ul>
+    </section>
+
+    <!-- Contact Button -->
+    <button id="contact-button" onmouseenter="showContact()" onmouseleave="hideContact()" onclick="toggleContact()">Contact Me</button>
+
+    <!-- Contact Section -->
+    <div id="contact">
+        <h3>Contact Me</h3>
+        <div class="contact-item">
+            <span>Email:</span>
+            <span>sairajjawake@gmail.com</span>
+        </div>
+        <div class="contact-item">
+            <span>Phone:</span>
+            <span>+912222222222</span>
+        </div>
+        <div class="contact-item">
+            <span>GitHub:</span>
+            <span><a href="https://github.com/saisj2002" target="_blank" style="color: #007bff;">saisj2002</a></span>
+        </div>
+        <div class="contact-item">
+            <span>LinkedIn:</span>
+            <span><a href="https://www.linkedin.com/in/sai-jawake" target="_blank" style="color: #007bff;">sai jawake</a></span>
+        </div>
+    </div>
+
+    <script>
+        var isContactVisible = false;
+
+        function showContact() {
+            if (!isContactVisible) {
+                document.getElementById("contact").style.display = "block";
+            }
+        }
+
+        function hideContact() {
+            if (!isContactVisible) {
+                document.getElementById("contact").style.display = "none";
+            }
+        }
+
+        function toggleContact() {
+            isContactVisible = !isContactVisible;
+            var contactSection = document.getElementById("contact");
+            if (isContactVisible) {
+                contactSection.style.display = "block";
+            } else {
+                contactSection.style.display = "none";
+            }
+        }
+    </script>
+
 </body>
 </html>
