@@ -1,7 +1,72 @@
-<html>
-    <head>
-        <style>
-            table {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSA and About Me</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            margin: 0; 
+            padding: 0;
+            background: linear-gradient(to right, #0e0e0e, #2e2e2e); /* Matte black gradient */
+            color: white;
+        }
+
+        nav { 
+            background-color: orangered; 
+            padding: 10px 20px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; /* Align items vertically */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Materialistic shadow */
+        }
+
+        nav ul { 
+            list-style-type: none; 
+            padding: 0; 
+            margin: 0; 
+            display: flex; 
+            gap: 15px; /* Reduce gap between menu items */
+        }
+
+        nav ul li a { 
+            color: white; 
+            text-decoration: none; 
+            font-weight: 600; /* Semi-bold */
+            padding: 10px 15px; 
+            transition: background-color 0.3s ease, transform 0.3s ease; 
+            border-radius: 5px;
+        }
+
+        nav ul li a:hover { 
+            background-color: #555; 
+            transform: scale(1.1); 
+        }
+
+        .social-icons { 
+            display: flex; 
+            gap: 15px; 
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem; /* Adjust size of icons */
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #555; 
+            transform: scale(1.2);
+        }
+
+        section { 
+            padding: 20px; 
+            text-align: center;
+        }
+
+        table {
               width: 100%;
               border-collapse: collapse;
               margin: 25px 0;
@@ -23,106 +88,135 @@
             table tbody tr {
               border-bottom: 1px solid #dddddd;
             }
-            table tbody tr:nth-of-type(even) {
-              background-color: #f3f3f3;
-            }
+            /* table tbody tr:nth-of-type(even) {
+              background-color: #420808;
+            } */
             table tbody tr:last-of-type {
               border-bottom: 2px solid #009879;
             }
             table tbody tr:hover {
-              background-color: #f1f1f1;
-              color: #333333;
+              background-color: #54a1d86d;
+              color: #000000;
             }
-          </style>
-    </head>
 
-    <body>
-        # JAVA PRACTICE
+        button { 
+            padding: 10px 20px; 
+            background-color: #007bff; 
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+            transition: background-color 0.3s ease;
+            border-radius: 5px;
+        }
 
-        <h1>Started my DSA journey,<h3> now starting this repository to maintain my track and To help new DSA beginners...
-        
-            <table>
-                <thead>
-                  <tr>
-                    <th>Concept</th>
-                    <th>Description</th>
-                    <th>Time Complexity (Best)</th>
-                    <th>Time Complexity (Average)</th>
-                    <th>Time Complexity (Worst)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Array</td>
-                    <td>A linear data structure that holds elements of the same type in contiguous memory.</td>
-                    <td>O(1)</td>
-                    <td>O(n)</td>
-                    <td>O(n)</td>
-                  </tr>
-                  <tr>
-                    <td>Linked List</td>
-                    <td>A linear data structure where elements are stored in nodes, and each node points to the next one.</td>
-                    <td>O(1)</td>
-                    <td>O(n)</td>
-                    <td>O(n)</td>
-                  </tr>
-                  <tr>
-                    <td>Stack</td>
-                    <td>A linear data structure that follows the Last In, First Out (LIFO) principle.</td>
-                    <td>O(1)</td>
-                    <td>O(n)</td>
-                    <td>O(n)</td>
-                  </tr>
-                  <tr>
-                    <td>Queue</td>
-                    <td>A linear data structure that follows the First In, First Out (FIFO) principle.</td>
-                    <td>O(1)</td>
-                    <td>O(n)</td>
-                    <td>O(n)</td>
-                  </tr>
-                  <tr>
-                    <td>Hash Table</td>
-                    <td>A data structure that stores key-value pairs using a hash function to index into an array.</td>
-                    <td>O(1)</td>
-                    <td>O(1)</td>
-                    <td>O(n)</td>
-                  </tr>
-                  <tr>
-                    <td>Binary Search Tree (BST)</td>
-                    <td>A tree structure where each node has at most two children, and the left child is smaller than the parent while the right child is greater.</td>
-                    <td>O(log n)</td>
-                    <td>O(log n)</td>
-                    <td>O(n)</td>
-                  </tr>
-                  <tr>
-                    <td>Heap</td>
-                    <td>A special tree-based data structure that satisfies the heap property (min-heap or max-heap).</td>
-                    <td>O(1)</td>
-                    <td>O(log n)</td>
-                    <td>O(log n)</td>
-                  </tr>
-                  <tr>
-                    <td>Graph</td>
-                    <td>A data structure that consists of nodes (vertices) connected by edges.</td>
-                    <td>Depends on the algorithm</td>
-                    <td>Depends on the algorithm</td>
-                    <td>Depends on the algorithm</td>
-                  </tr>
-                  <tr>
-                    <td>Sorting Algorithms</td>
-                    <td>Various algorithms to sort data (e.g., Bubble Sort, Merge Sort, Quick Sort, etc.).</td>
-                    <td>O(n log n)</td>
-                    <td>O(n log n)</td>
-                    <td>O(n^2)</td>
-                  </tr>
-                  <tr>
-                    <td>Dynamic Programming</td>
-                    <td>A technique used to solve complex problems by breaking them into simpler overlapping subproblems.</td>
-                    <td>Depends on the problem</td>
-                    <td>Depends on the problem</td>
-                    <td>Depends on the problem</td>
-                  </tr>
-                </tbody>
-              </table>
-    </body>
+        button:hover { 
+            background-color: #0056b3; 
+        }
+    </style>
+    <!-- Corrected Font Awesome Icons CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <!-- Left-aligned menu -->
+        <ul>
+            <li><a href="index.html">DSA Concepts</a></li>
+            <li><a href="about.html">About Me</a></li>
+            <li><a href="github.html">GitHub</a></li>
+        </ul>
+
+        <!-- Right-aligned social media icons -->
+        <div class="social-icons">
+            <a href="https://www.instagram.com/sai_jawake" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.snapchat.com" target="_blank"><i class="fab fa-snapchat"></i></a>
+        </div>
+    </nav>
+
+    <section id="dsa">
+        <h2>DSA Concepts Index</h2>
+        <table>
+            <thead>
+              <tr>
+                <th>Concept</th>
+                <th>Description</th>
+                <th>Time Complexity (Best)</th>
+                <th>Time Complexity (Average)</th>
+                <th>Time Complexity (Worst)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Array</td>
+                <td>A linear data structure that holds elements of the same type in contiguous memory.</td>
+                <td>O(1)</td>
+                <td>O(n)</td>
+                <td>O(n)</td>
+              </tr>
+              <tr>
+                <td>Linked List</td>
+                <td>A linear data structure where elements are stored in nodes, and each node points to the next one.</td>
+                <td>O(1)</td>
+                <td>O(n)</td>
+                <td>O(n)</td>
+              </tr>
+              <tr>
+                <td>Stack</td>
+                <td>A linear data structure that follows the Last In, First Out (LIFO) principle.</td>
+                <td>O(1)</td>
+                <td>O(n)</td>
+                <td>O(n)</td>
+              </tr>
+              <tr>
+                <td>Queue</td>
+                <td>A linear data structure that follows the First In, First Out (FIFO) principle.</td>
+                <td>O(1)</td>
+                <td>O(n)</td>
+                <td>O(n)</td>
+              </tr>
+              <tr>
+                <td>Hash Table</td>
+                <td>A data structure that stores key-value pairs using a hash function to index into an array.</td>
+                <td>O(1)</td>
+                <td>O(1)</td>
+                <td>O(n)</td>
+              </tr>
+              <tr>
+                <td>Binary Search Tree (BST)</td>
+                <td>A tree structure where each node has at most two children, and the left child is smaller than the parent while the right child is greater.</td>
+                <td>O(log n)</td>
+                <td>O(log n)</td>
+                <td>O(n)</td>
+              </tr>
+              <tr>
+                <td>Heap</td>
+                <td>A special tree-based data structure that satisfies the heap property (min-heap or max-heap).</td>
+                <td>O(1)</td>
+                <td>O(log n)</td>
+                <td>O(log n)</td>
+              </tr>
+              <tr>
+                <td>Graph</td>
+                <td>A data structure that consists of nodes (vertices) connected by edges.</td>
+                <td>Depends on the algorithm</td>
+                <td>Depends on the algorithm</td>
+                <td>Depends on the algorithm</td>
+              </tr>
+              <tr>
+                <td>Sorting Algorithms</td>
+                <td>Various algorithms to sort data (e.g., Bubble Sort, Merge Sort, Quick Sort, etc.).</td>
+                <td>O(n log n)</td>
+                <td>O(n log n)</td>
+                <td>O(n^2)</td>
+              </tr>
+              <tr>
+                <td>Dynamic Programming</td>
+                <td>A technique used to solve complex problems by breaking them into simpler overlapping subproblems.</td>
+                <td>Depends on the problem</td>
+                <td>Depends on the problem</td>
+                <td>Depends on the problem</td>
+              </tr>
+            </tbody>
+          </table>
+    </section>
+</body>
 </html>
