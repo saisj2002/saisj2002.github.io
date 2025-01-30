@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insertion Sort Visualization</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #0e0e0e, #2e2e2e); /* Matte black gradient */
+            color: white;
+        }
+
+        nav { 
+            background-color: orangered; 
+            padding: 10px 20px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; /* Align items vertically */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Materialistic shadow */
+        }
+
+        nav ul { 
+            list-style-type: none; 
+            padding: 0; 
+            margin: 0; 
+            display: flex; 
+            gap: 15px; /* Reduce gap between menu items */
+        }
+
+        nav ul li a { 
+            color: white; 
+            text-decoration: none; 
+            font-weight: 600; /* Semi-bold */
+            padding: 10px 15px; 
+            transition: background-color 0.3s ease, transform 0.3s ease; 
+            border-radius: 5px;
+        }
+
+        nav ul li a:hover { 
+            background-color: #555; 
+            transform: scale(1.1); 
+        }
+
+        .social-icons { 
+            display: flex; 
+            gap: 15px; 
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem; /* Adjust size of icons */
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #555; 
+            transform: scale(1.2);
+        }
+
+        section {
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #333;
+            margin: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .code {
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: Consolas, 'Courier New', monospace;
+            overflow-x: auto;
+        }
+
+        .output {
+            background-color: #e8e8e8;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            color: #000;
+        }
+
+        .animation-container {
+            position: relative;
+            width: 100%;
+            height: 300px; /* Reduced height to fit within section */
+            background-color: #333;
+            display: flex;
+            align-items: flex-end; /* Align bars at the bottom */
+            justify-content: space-evenly;
+            border-radius: 8px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .bar {
+            width: 30px;
+            background-color: #4CAF50;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-bottom: 10px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button.reset {
+            background-color: #f44336;
+        }
+
+        button.reset:hover {
+            background-color: #e53935;
+        }
+
+        /* Keep original absolute positioning of sections */
+        .code-section {
+            width: 50%;
+            position: absolute;
+            top: 8%;
+            left: 15px;
+        }
+
+        .info-section {
+            width: 50%;
+            position: absolute;
+            top: 111%;
+            left: 15px;
+        }
+
+        .complexity-section {
+            width: 40%;
+            position: absolute;
+            top: 8%;
+            right: 15px;
+        }
+
+        .animation-section {
+            width: 40%;
+            position: absolute;
+            top: 40%;
+            right: 15px;
+        }
+
+        .youtube-section {
+            width: 40%;
+            position: absolute;
+            top: 106%;
+            right: 15px;
+        }
+
+        /* Media Query for smaller screens */
+        @media only screen and (max-width: 768px) {
+            section {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            .code-section, .info-section, .complexity-section, .animation-section, .youtube-section {
+                position: relative;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .complexity-section {
+                margin-top: 20px;
+            }
+
+            .animation-section {
+                margin-top: 20px;
+            }
+
+            .youtube-section {
+                margin-top: 20px;
+            }
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="index.html">DSA Concepts</a></li>
+            <li><a href="about.html">About Me</a></li>
+            <li><a href="github.html">GitHub</a></li>
+        </ul>
+
+        <div class="social-icons">
+            <a href="https://www.instagram.com/saijawake" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.snapchat.com" target="_blank"><i class="fab fa-snapchat"></i></a>
+            <a href="https://github.com/saisj2002" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/sai-jawake" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </nav>
+
+    <!-- Section 1: Code Section -->
+    <section class="code-section">
+        <h2>Insertion Sort Code (Java)</h2>
+        <pre class="code">
+public class InsertionSort {
+    public static void main(String[] args) {
+        int[] arr = {5, 1, 4, 2, 8};
+        insertionSort(arr);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+    }
+
+    static void insertionSort(int[] arr) {
+        int n = arr.length;
+        for (int i = 1; i < n; i++) {
+            int key = arr[i];
+            int j = i - 1;
+
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j = j - 1;
+            }
+            arr[j + 1] = key;
+        }
+    }
+}
+        </pre>
+        <div class="output">
+            <h4>Output:</h4>
+            <p>1 2 4 5 8</p>
+        </div>
+    </section>
+
+    <!-- Section 2: Insertion Sort in DSA -->
+    <section class="info-section">
+        <h2>What is Insertion Sort in DSA?</h2>
+        <p>Insertion Sort is a simple sorting algorithm that builds the sorted array one element at a time. It works by repeatedly picking the next element and inserting it into its correct position relative to the already sorted portion of the array.</p>
+        <p>Insertion Sort is efficient for small datasets and is adaptive (meaning it performs better if the data is already partially sorted).</p>
+    </section>
+
+    <!-- Section 3: Time and Space Complexity -->
+    <section class="complexity-section">
+        <h2>Time and Space Complexity</h2>
+        <p><strong>Time Complexity:</strong> O(n^2) in the average and worst case, and O(n) in the best case (when the list is already sorted).</p>
+        <p><strong>Space Complexity:</strong> O(1), as Insertion Sort only requires a constant amount of extra space.</p>
+    </section>
+
+    <!-- Section 4: Insertion Sort Animation -->
+    <section class="animation-section">
+        <h2>Insertion Sort Animation</h2>
+        <div class="animation-container">
+            <div id="bars" class="container"></div>
+        </div>
+        <div class="controls">
+            <button onclick="startInsertionSort()">Start Insertion Sort</button>
+            <button class="reset" onclick="resetBars()">Reset</button>
+        </div>
+    </section>
+
+    <!-- Section 5: YouTube Video Link -->
+    <section class="youtube-section">
+        <h2>Learn More About Insertion Sort</h2>
+        <div class="youtube-link">
+            <h4><a href="https://www.youtube.com/watch?v=pkD5oGH_H6I" target="_blank" style="color: #e8e8e8;">
+                <i class="fab fa-youtube" style="color: red;">
+                </i>
+                Watch on YouTube
+            </a></h4>
+        </div>
+    </section>
+
+    <script>
+        let array = [45, 15, 35, 55, 8, 25]; // Initial array to sort
+
+        const barsContainer = document.getElementById('bars');
+
+        // Create bars based on the array
+        function createBars() {
+            barsContainer.innerHTML = ''; // Clear previous bars
+            barsContainer.style.display = 'flex';
+            barsContainer.style.alignItems = 'flex-end'; // Align bars to the bottom
+            barsContainer.style.justifyContent = 'space-evenly';
+            barsContainer.style.height = '100%';
+
+            array.forEach(value => {
+                const bar = document.createElement('div');
+                bar.classList.add('bar');
+                bar.style.height = `${value * 5}px`; // Scale bar height
+                barsContainer.appendChild(bar);
+            });
+        }
+
+        async function startInsertionSort() {
+            const bars = document.querySelectorAll('.bar');
+            let len = bars.length;
+
+            for (let i = 1; i < len; i++) {
+                let keyHeight = parseInt(bars[i].style.height);
+                let j = i - 1;
+
+                while (j >= 0 && parseInt(bars[j].style.height) > keyHeight) {
+                    bars[j].style.backgroundColor = 'red'; // Highlight comparison
+                    bars[j + 1].style.backgroundColor = 'red';
+
+                    await new Promise(resolve => setTimeout(resolve, 300)); // Delay for visualization
+
+                    // Move the bar one step to the right
+                    bars[j + 1].style.height = bars[j].style.height;
+                    bars[j].style.backgroundColor = '#4CAF50'; // Reset color
+
+                    j = j - 1;
+                }
+
+                // Place key element into correct position
+                bars[j + 1].style.height = `${keyHeight}px`;
+                bars[i].style.backgroundColor = '#4CAF50'; // Reset color after insertion
+            }
+        }
+
+        function resetBars() {
+            array = [45, 15, 35, 55, 8, 25]; // Reset the array
+            createBars(); // Recreate bars with the original array
+        }
+
+        // Initialize bars on page load
+        window.onload = createBars;
+    </script>
+</body>
+</html>

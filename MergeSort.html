@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merge Sort Visualization</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #0e0e0e, #2e2e2e);
+            color: white;
+        }
+
+        nav {
+            background-color: orangered;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 15px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border-radius: 5px;
+        }
+
+        nav ul li a:hover {
+            background-color: #555;
+            transform: scale(1.1);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #555;
+            transform: scale(1.2);
+        }
+
+        section {
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #333;
+            margin: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .code {
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: Consolas, 'Courier New', monospace;
+            overflow-x: auto;
+        }
+
+        .output {
+            background-color: #e8e8e8;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            color: #000;
+        }
+
+        .animation-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            background-color: #333;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-evenly;
+            border-radius: 8px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .bar {
+            width: 30px;
+            background-color: #4CAF50;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-bottom: 10px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button.reset {
+            background-color: #f44336;
+        }
+
+        button.reset:hover {
+            background-color: #e53935;
+        }
+
+        .code-section {
+            width: 50%;
+            position: absolute;
+            top: 8%;
+            left: 15px;
+        }
+
+        .info-section {
+            width: 40%;
+            position: absolute;
+            top: 130%;
+            right: 15px;
+        }
+
+        .complexity-section {
+            width: 40%;
+            position: absolute;
+            top: 8%;
+            right: 15px;
+        }
+
+        .animation-section {
+            width: 40%;
+            position: absolute;
+            top: 40%;
+            right: 15px;
+        }
+
+        .youtube-section {
+            width: 40%;
+            position: absolute;
+            top: 106%;
+            right: 15px;
+        }
+
+        @media only screen and (max-width: 768px) {
+            section {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            .code-section, .info-section, .complexity-section, .animation-section, .youtube-section {
+                position: relative;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .complexity-section {
+                margin-top: 20px;
+            }
+
+            .animation-section {
+                margin-top: 20px;
+            }
+
+            .youtube-section {
+                margin-top: 20px;
+            }
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">DSA Concepts</a></li>
+            <li><a href="about.html">About Me</a></li>
+            <li><a href="github.html">GitHub</a></li>
+        </ul>
+
+        <div class="social-icons">
+            <a href="https://www.instagram.com/saijawake" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.snapchat.com" target="_blank"><i class="fab fa-snapchat"></i></a>
+            <a href="https://github.com/saisj2002" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/sai-jawake" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </nav>
+
+    <!-- Section 1: Code Section -->
+    <section class="code-section">
+        <h2>Merge Sort Code (Java)</h2>
+        <pre class="code">
+public class MergeSort {
+    public static void main(String[] args) {
+        int[] arr = {5, 1, 4, 2, 8};
+        mergeSort(arr, 0, arr.length - 1);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+    }
+
+    static void mergeSort(int[] arr, int left, int right) {
+        if (left < right) {
+            int mid = left + (right - left) / 2;
+            mergeSort(arr, left, mid);
+            mergeSort(arr, mid + 1, right);
+            merge(arr, left, mid, right);
+        }
+    }
+
+    static void merge(int[] arr, int left, int mid, int right) {
+        int n1 = mid - left + 1;
+        int n2 = right - mid;
+
+        int[] leftArr = new int[n1];
+        int[] rightArr = new int[n2];
+
+        System.arraycopy(arr, left, leftArr, 0, n1);
+        System.arraycopy(arr, mid + 1, rightArr, 0, n2);
+
+        int i = 0, j = 0, k = left;
+        while (i < n1 && j < n2) {
+            if (leftArr[i] <= rightArr[j]) {
+                arr[k] = leftArr[i];
+                i++;
+            } else {
+                arr[k] = rightArr[j];
+                j++;
+            }
+            k++;
+        }
+
+        while (i < n1) {
+            arr[k] = leftArr[i];
+            i++;
+            k++;
+        }
+
+        while (j < n2) {
+            arr[k] = rightArr[j];
+            j++;
+            k++;
+        }
+    }
+}
+        </pre>
+        <div class="output">
+            <h4>Output:</h4>
+            <p>1 2 4 5 8</p>
+        </div>
+    </section>
+
+    <!-- Section 2: Merge Sort in DSA -->
+    <section class="info-section">
+        <h2>What is Merge Sort in DSA?</h2>
+    <p>Merge sort is a classic divide-and-conquer sorting algorithm. It works by recursively splitting an array or list into two smaller subarrays, sorting those subarrays, and then merging them back together in sorted order.
+        <br>
+        <li>Divide: Split the unsorted list into two roughly equal halves.<br>
+        <li>Conquer: Recursively sort each half. If a sublist has only one element.<br>
+        <li>Merge: Combine (merge) the two sorted halves into a single sorted list. This is done by comparing the smallest elements of each sublist and arranging them in the correct order.</p>
+    </section>
+
+    <!-- Section 3: Time and Space Complexity -->
+    <section class="complexity-section">
+        <h2>Time and Space Complexity</h2>
+        <p><strong>Time Complexity:</strong> O(n log n) in all cases (best, average, worst).</p>
+        <p><strong>Space Complexity:</strong> O(n), as it requires additional space for temporary arrays during the merge process.</p>
+    </section>
+
+    <!-- Section 4: Merge Sort Animation -->
+    <section class="animation-section">
+        <h2>Merge Sort Animation</h2>
+        <div class="animation-container">
+            <div id="bars" class="container"></div>
+        </div>
+        <div class="controls">
+            <button onclick="startMergeSort()">Start Merge Sort</button>
+            <button class="reset" onclick="resetBars()">Reset</button>
+        </div>
+    </section>
+
+    <!-- Section 5: YouTube Video Link -->
+    <section class="youtube-section">
+        <h2>Learn More About Merge Sort</h2>
+        <div class="youtube-link">
+            <h4><a href="https://www.youtube.com/watch?v=unxAnJBy12Q&list=PLfqMhTWNBTe3LtFWcvwpqTkUSlB32kJop&index=22" target="_blank" style="color: #e8e8e8;">
+                <i class="fab fa-youtube" style="color: red;"></i> Watch on YouTube
+            </a></h4>
+        </div>
+    </section>
+
+    <script>
+        let array = [45, 15, 35, 55, 8, 25]; // Initial array to sort
+
+        const barsContainer = document.getElementById('bars');
+
+        // Create bars based on the array
+        function createBars() {
+            barsContainer.innerHTML = ''; // Clear previous bars
+            barsContainer.style.display = 'flex';
+            barsContainer.style.alignItems = 'flex-end';
+            barsContainer.style.justifyContent = 'space-evenly';
+            barsContainer.style.height = '100%';
+
+            array.forEach(value => {
+                const bar = document.createElement('div');
+                bar.classList.add('bar');
+                bar.style.height = `${value * 5}px`; // Scale bar height
+                barsContainer.appendChild(bar);
+            });
+        }
+
+        async function startMergeSort() {
+            const bars = document.querySelectorAll('.bar');
+            await mergeSortVisualize(array, 0, array.length - 1);
+            createBars(); // Recreate the bars after sorting
+        }
+
+        async function mergeSortVisualize(arr, left, right) {
+            if (left < right) {
+                let mid = Math.floor((left + right) / 2);
+                await mergeSortVisualize(arr, left, mid);
+                await mergeSortVisualize(arr, mid + 1, right);
+                await merge(arr, left, mid, right);
+            }
+        }
+
+        async function merge(arr, left, mid, right) {
+            const bars = document.querySelectorAll('.bar');
+            let n1 = mid - left + 1;
+            let n2 = right - mid;
+            let leftArr = arr.slice(left, mid + 1);
+            let rightArr = arr.slice(mid + 1, right + 1);
+
+            let i = 0, j = 0, k = left;
+
+            while (i < n1 && j < n2) {
+                bars[k].style.backgroundColor = 'red'; // Highlight bars being merged
+                await new Promise(resolve => setTimeout(resolve, 300));
+                if (leftArr[i] <= rightArr[j]) {
+                    arr[k] = leftArr[i];
+                    i++;
+                } else {
+                    arr[k] = rightArr[j];
+                    j++;
+                }
+                k++;
+                createBars();
+            }
+
+            while (i < n1) {
+                arr[k] = leftArr[i];
+                i++;
+                k++;
+                createBars();
+            }
+
+            while (j < n2) {
+                arr[k] = rightArr[j];
+                j++;
+                k++;
+                createBars();
+            }
+        }
+
+        function resetBars() {
+            array = [45, 15, 35, 55, 8, 25]; // Reset the array
+            createBars(); // Recreate bars with the original array
+        }
+
+        // Initialize bars on page load
+        window.onload = createBars;
+    </script>
+</body>
+</html>
