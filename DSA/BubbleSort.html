@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubble Sort Visualization</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #0e0e0e, #2e2e2e); /* Matte black gradient */
+            color: white;
+        }
+
+        nav { 
+            background-color: orangered; 
+            padding: 10px 20px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; /* Align items vertically */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Materialistic shadow */
+        }
+
+        nav ul { 
+            list-style-type: none; 
+            padding: 0; 
+            margin: 0; 
+            display: flex; 
+            gap: 15px; /* Reduce gap between menu items */
+        }
+
+        nav ul li a { 
+            color: white; 
+            text-decoration: none; 
+            font-weight: 600; /* Semi-bold */
+            padding: 10px 15px; 
+            transition: background-color 0.3s ease, transform 0.3s ease; 
+            border-radius: 5px;
+        }
+
+        nav ul li a:hover { 
+            background-color: #555; 
+            transform: scale(1.1); 
+        }
+
+        .social-icons { 
+            display: flex; 
+            gap: 15px; 
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem; /* Adjust size of icons */
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #555; 
+            transform: scale(1.2);
+        }
+
+        section {
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #333;
+            margin: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .code {
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: Consolas, 'Courier New', monospace;
+            overflow-x: auto;
+        }
+
+        .output {
+            background-color: #e8e8e8;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            color: #000;
+        }
+
+        .animation-container {
+            position: relative;
+            width: 100%;
+            height: 300px; /* Reduced height to fit within section */
+            background-color: #333;
+            display: flex;
+            align-items: flex-end; /* Align bars at the bottom */
+            justify-content: space-evenly;
+            border-radius: 8px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .bar {
+            width: 30px;
+            background-color: #4CAF50;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-bottom: 10px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button.reset {
+            background-color: #f44336;
+        }
+
+        button.reset:hover {
+            background-color: #e53935;
+        }
+
+        /* Keep original absolute positioning of sections */
+        .code-section {
+            width: 50%;
+            position: absolute;
+            top: 8%;
+            left: 15px;
+        }
+
+        .info-section {
+            width: 50%;
+            position: absolute;
+            top: 106%;
+            left: 15px;
+        }
+
+        .complexity-section {
+            width: 40%;
+            position: absolute;
+            top: 8%;
+            right: 15px;
+        }
+
+        .animation-section {
+            width: 40%;
+            position: absolute;
+            top: 40%;
+            right: 15px;
+        }
+
+        .youtube-section {
+            width: 40%;
+            position: absolute;
+            top: 106%;
+            right: 15px;
+        }
+
+        /* Media Query for smaller screens */
+        @media only screen and (max-width: 768px) {
+            section {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            .code-section, .info-section, .complexity-section, .animation-section, .youtube-section {
+                position: relative;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .complexity-section {
+                margin-top: 20px;
+            }
+
+            .animation-section {
+                margin-top: 20px;
+            }
+
+            .youtube-section {
+                margin-top: 20px;
+            }
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="index.html">DSA Concepts</a></li>
+            <li><a href="about.html">About Me</a></li>
+            <li><a href="github.html">GitHub</a></li>
+        </ul>
+
+        <div class="social-icons">
+            <a href="https://www.instagram.com/saijawake" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.snapchat.com" target="_blank"><i class="fab fa-snapchat"></i></a>
+            <a href="https://github.com/saisj2002" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/sai-jawake" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </nav>
+
+    <!-- Section 1: Code Section -->
+    <section class="code-section">
+        <h2>Bubble Sort Code (Java)</h2>
+        <pre class="code">
+public class BubbleSort {
+    public static void main(String[] args) {
+        int[] arr = {5, 1, 4, 2, 8};
+        bubbleSort(arr);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+    }
+    static void bubbleSort(int[] arr) {
+        int n = arr.length;
+        for (int i = 0; i < n-1; i++) {
+            for (int j = 0; j < n-i-1; j++) {
+                if (arr[j] > arr[j+1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
+                }
+            }
+        }
+    }
+}
+        </pre>
+        <div class="output">
+            <h4>Output:</h4>
+            <p>1 2 4 5 8</p>
+        </div>
+    </section>
+
+    <!-- Section 2: Bubble Sort in DSA -->
+    <section class="info-section">
+        <h2>What is Bubble Sort in DSA?</h2>
+        <p>Bubble Sort is one of the most fundamental sorting algorithms. It works by repeatedly comparing adjacent elements and swapping them if they are in the wrong order. The process continues until the array is completely sorted.</p>
+        <p>In computer science, understanding Bubble Sort is important as it introduces basic concepts like comparison-based sorting and helps in learning optimization techniques like flagging.</p>
+        <p>Though not practical for large datasets due to its O(n^2) time complexity, Bubble Sort is used in educational contexts to teach algorithmic thinking. Students learn about time complexity analysis, algorithm optimization, and the differences between various sorting techniques through it.</p>
+        <p>This algorithm is also helpful in understanding how more complex algorithms like Quick Sort or Merge Sort reduce time complexity by adopting more advanced strategies. It lays the foundation for learning algorithmic design principles.</p>
+    </section>
+
+    <!-- Section 3: Time and Space Complexity -->
+    <section class="complexity-section">
+        <h2>Time and Space Complexity</h2>
+        <p><strong>Time Complexity:</strong> O(n^2) in the average and worst case, and O(n) in the best case (when the list is already sorted).</p>
+        <p><strong>Space Complexity:</strong> O(1), as Bubble Sort only requires a constant amount of extra space.</p>
+    </section>
+
+    <!-- Section 4: Bubble Sort Animation -->
+    <section class="animation-section">
+        <h2>Bubble Sort Animation</h2>
+        <div class="animation-container">
+            <div id="bars" class="container"></div>
+        </div>
+        <div class="controls">
+            <button onclick="startBubbleSort()">Start Bubble Sort</button>
+            <button class="reset" onclick="resetBars()">Reset</button>
+        </div>
+    </section>
+
+    <!-- Section 5: YouTube Video Link -->
+    <section class="youtube-section">
+        <h2>Learn More About Bubble Sort</h2>
+        
+        <div class="youtube-link">
+            <h4><a href="https://www.youtube.com/watch?v=PkJIc5tBRUE&t=1418s" target="_blank" style="color: #e8e8e8;">
+                <i class="fab fa-youtube" style="color: red;">
+                </i>
+                Watch on YouTube
+            </a></h4>
+        </div>
+    </section>
+
+    <script>
+        let array = [45, 15, 35, 55, 8, 25]; // Initial array to sort
+
+        const barsContainer = document.getElementById('bars');
+
+        // Create bars based on the array
+        function createBars() {
+            barsContainer.innerHTML = ''; // Clear previous bars
+            barsContainer.style.display = 'flex';
+            barsContainer.style.alignItems = 'flex-end'; // Align bars to the bottom
+            barsContainer.style.justifyContent = 'space-evenly';
+            barsContainer.style.height = '100%';
+
+            array.forEach(value => {
+                const bar = document.createElement('div');
+                bar.classList.add('bar');
+                bar.style.height = `${value * 5}px`; // Scale bar height
+                barsContainer.appendChild(bar);
+            });
+        }
+
+        async function startBubbleSort() {
+            const bars = document.querySelectorAll('.bar');
+            let len = bars.length;
+
+            for (let i = 0; i < len - 1; i++) {
+                for (let j = 0; j < len - i - 1; j++) {
+                    bars[j].style.backgroundColor = 'red'; // Highlight comparison
+                    bars[j + 1].style.backgroundColor = 'red';
+
+                    await new Promise(resolve => setTimeout(resolve, 300)); // Delay for visualization
+
+                    const height1 = parseInt(bars[j].style.height);
+                    const height2 = parseInt(bars[j + 1].style.height);
+
+                    if (height1 > height2) {
+                        // Swap bars
+                        bars[j].style.height = `${height2}px`;
+                        bars[j + 1].style.height = `${height1}px`;
+                    }
+
+                    bars[j].style.backgroundColor = '#4CAF50'; // Revert color after comparison
+                    bars[j + 1].style.backgroundColor = '#4CAF50';
+                }
+            }
+        }
+
+        function resetBars() {
+            array = [45, 15, 35, 55, 8, 25]; // Reset the array
+            createBars(); // Recreate bars with the original array
+        }
+
+        // Initialize bars on page load
+        window.onload = createBars;
+    </script>
+</body>
+</html>
