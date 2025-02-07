@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Login & Registration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {  
+            font-family: 'Satoshi', sans-serif;
+        }
+
+         body{
+           background-color: #222;
+         }
+
+        /* Menu Bar */
+        nav {
+            background-color: #ff5722; /* Orange theme */
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            color: white;
+            z-index: 10;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li {
+            margin: 0;
+            cursor: pointer;
+            font-size: 18px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        nav ul li:hover {
+            transform: scale(1.1); /* Animation */
+            color: #ffccbc; /* Lighter shade of orange */
+        }
+
+        nav .social-media {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav .social-media i {
+            cursor: pointer;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+
+        nav .social-media i:hover {
+            color: #fff; /* Highlight on hover */
+        }
+
+        /* Form container with 30% margins */
+        .container {
+            background-color: #222; /* Black matte finish */
+            padding: 60px 40px;
+            width: 40%; /* Adjusted to 40% of screen width */
+            margin: 15% 0 0 5%;
+             /* Center the container */
+            border-radius: 15px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 1s ease-in;
+            color: white;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Form input styling */
+        .container h2 {
+            margin-bottom: 30px;
+        }
+
+        .container input {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: none;
+            outline: none;
+            background: #333;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        .container input::placeholder {
+            color: #888;
+        }
+
+        .container input[type="submit"] {
+            background-color: #ff5722;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out, transform 0.2s;
+        }
+
+        .container input[type="submit"]:hover {
+            background-color: #ff7043;
+            transform: translateY(-3px); /* Button hover animation */
+        }
+
+        /* Registration button aligned next to Login button */
+        .btn-container {
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
+        }
+
+        .btn-container input {
+            width: 48%;
+        }
+
+    </style>
+    <!-- FontAwesome for Social Media Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<!-- Background Section -->
+<div class="background"></div>
+
+<!-- Menu Bar -->
+<nav>
+    <ul>
+        <li>Home</li>
+        <li>Courses</li>
+        <li>Certificates</li>
+        <li>About Us</li>
+    </ul>
+    <div class="social-media">
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-linkedin"></i>
+    </div>
+</nav>
+
+<!-- Login & Registration Form -->
+<div class="container">
+    <h2>Login or Register</h2>
+    <form action="#" method="post">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+
+        <!-- Login and Registration Buttons side by side -->
+        <div class="btn-container">
+            <input type="submit" value="Login">
+            <input type="button" value="Register" onclick="window.location.href='register.html'">
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

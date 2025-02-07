@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #222;
+            font-family: 'Mulish', sans-serif;
+            color: white;
+        }
+
+        nav {
+            background-color: #ff5722;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            color: white;
+            z-index: 10;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li {
+            cursor: pointer;
+            font-size: 18px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        nav ul li:hover {
+            transform: scale(1.1);
+            color: #ffccbc;
+        }
+
+        nav .social-media {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav .social-media i {
+            font-size: 20px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        nav .social-media i:hover {
+            color: #fff;
+        }
+
+        .container {
+            background-color: #333;
+            padding: 30px 40px;
+            width: 45%;
+            margin: 7% 0 2% 5%;
+            border-radius: 15px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+            color: white;
+        }
+
+        h2 {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            outline: none;
+            background: #444;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        input::placeholder {
+            color: #888;
+        }
+
+        input[type="submit"] {
+            margin-top: 40px;
+            background-color: #ff5722;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out, transform 0.2s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #ff7043;
+            transform: translateY(-3px);
+        }
+
+        .gender-options label {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 85px;
+        }
+
+        input[type="radio"] {
+            margin-right: 1px;
+        }
+
+        .dropdown {
+            background: #444;
+            color: white;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li>Home</li>
+        <li>Courses</li>
+        <li>Certificates</li>
+        <li>About Us</li>
+    </ul>
+    <div class="social-media">
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-linkedin"></i>
+    </div>
+</nav>
+
+<div class="container">
+    <h2>Registration</h2>
+    <form id="registrationForm" action="#" method="post">
+        <input type="text" name="first_name" placeholder="First Name" required>
+        <input type="text" name="middle_name" placeholder="Middle Name (Optional)">
+        <input type="text" name="last_name" placeholder="Last Name" required>
+        <input type="number" name="age" placeholder="Age" required min="5" max="100">
+        <input type="tel" name="phone" placeholder="Phone Number" pattern="[0-9]{10}" required title="Phone number must be 10 digits">
+        <input type="email" id="email" name="email" placeholder="Email" required title="Please enter a valid email address">
+        <div id="emailError" class="error">Please enter a valid email address ending with .com</div>
+        <input type="date" name="dob" placeholder="Date of Birth" required>
+        <input type="text" name="address" placeholder="Address" required>
+        <input type="text" name="aadhar" placeholder="Aadhar Card Number" pattern="[0-9]{12}" required title="Aadhar number must be 12 digits">
+        <select name="field_interest" class="dropdown" required>
+            <option value="" disabled selected>Field of Interest</option>
+            <option value="programming">Programming</option>
+            <option value="data_science">Data Science</option>
+            <option value="design">Design</option>
+            <option value="marketing">Marketing</option>
+            <option value="management">Management</option>
+        </select>
+        <div class="gender-options">
+            <label>Gender:</label>
+            <label><input type="radio" name="gender" value="male" required> Male</label>
+            <label><input type="radio" name="gender" value="female"> Female</label>
+            <label><input type="radio" name="gender" value="other"> Other</label>
+        </div>
+        <input type="submit" value="Register">
+    </form>
+</div>
+
+<script>
+    document.getElementById('registrationForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form from submitting the traditional way
+
+        var first_name = document.getElementsByName('first_name')[0].value;
+        var middle_name = document.getElementsByName('middle_name')[0].value;
+        var last_name = document.getElementsByName('last_name')[0].value;
+        var age = document.getElementsByName('age')[0].value;
+        var phone = document.getElementsByName('phone')[0].value;
+        var email = document.getElementsByName('email')[0].value;
+        var dob = document.getElementsByName('dob')[0].value;
+        var address = document.getElementsByName('address')[0].value;
+        var aadhar = document.getElementsByName('aadhar')[0].value;
+        var field_interest = document.getElementsByName('field_interest')[0].value;
+        var gender = document.querySelector('input[name="gender"]:checked').value;
+
+        var emailError = document.getElementById('emailError');
+        var emailPattern = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+\.com$/;
+
+        if (!emailPattern.test(email)) {
+            emailError.style.display = 'block';
+        } else {
+            emailError.style.display = 'none';
+
+            // Prepare data to be sent to backend
+            var formData = {
+                first_name: first_name,
+                middle_name: middle_name,
+                last_name: last_name,
+                age: age,
+                phone: phone,
+                email: email,
+                dob: dob,
+                address: address,
+                aadhar: aadhar,
+                field_interest: field_interest,
+                gender: gender
+            };
+
+            // Send data to backend using fetch
+            fetch('http://your-backend-url/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    });
+</script>
+
+</body>
+</html>

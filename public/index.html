@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #222;
+            font-family: 'Mulish', sans-serif;
+            color: white;
+        }
+
+        nav {
+            background-color: #ff5722;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            color: white;
+            z-index: 10;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li {
+            cursor: pointer;
+            font-size: 18px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        nav ul li:hover {
+            transform: scale(1.1);
+            color: #ffccbc;
+        }
+
+        nav .social-media {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav .social-media i {
+            font-size: 20px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        nav .social-media i:hover {
+            color: #fff;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-top: 4%;
+            padding: 50px;
+        }
+
+        .college-logo {
+            width: 150px;
+            margin-right: 20px;
+        }
+
+        .header h1 {
+              font-size: 36px;
+            margin: 0;
+            text-align: center;
+        }
+
+        .content {
+            text-align: center;
+            padding: 50px;
+        }
+
+        .student-image {
+            width: 60%;
+            max-width: 600px;
+            height: auto;
+            margin: 40px auto 0;
+        }
+
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li>Home</li>
+        <li>Courses</li>
+        <li>Certificates</li>
+        <li>About Us</li>
+    </ul>
+    <div class="social-media">
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-linkedin"></i>
+    </div>
+</nav>
+
+<div class="header">
+    <img src="images/College Logo.png" alt="College Logo" class="college-logo">
+    <h1>Zeal Institute of Business Administration, Computer Applications & Research</h1>
+</div>
+
+<p style="text-align: center; font-size: 18px;">Our platform provides online courses and learning resources for students and professionals. Join us and start learning today!</p>
+Welcome to Zeal Education Society's E-Learning Platform
+<div class="content">
+    <img src="images/group.png" alt="Student Attending Lectures" class="student-image">
+</div>
+
+</body>
+</html>
